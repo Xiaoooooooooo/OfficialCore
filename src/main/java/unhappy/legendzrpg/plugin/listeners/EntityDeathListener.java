@@ -20,6 +20,7 @@ public class EntityDeathListener implements Listener {
         if (event.getEntity().getKiller() instanceof Player) {
             Player player = (Player) event.getEntity().getKiller();
             player.sendMessage("Point Added!");
+
         }
     }
 }
