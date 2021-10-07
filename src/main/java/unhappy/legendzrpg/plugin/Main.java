@@ -34,9 +34,7 @@ public class Main extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         instance = this;
-        Bukkit.broadcastMessage("ay");
         connect();
-        Bukkit.broadcastMessage("ay2");
         this.data = new DataManager(this);
         this.stat = new Stat(this);
         //Commands
