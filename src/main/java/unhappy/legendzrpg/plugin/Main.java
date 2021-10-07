@@ -14,6 +14,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import unhappy.legendzrpg.plugin.listeners.*;
 import unhappy.legendzrpg.plugin.mongodb.DataManager;
+import unhappy.legendzrpg.plugin.mongodb.Stat;
 import unhappy.legendzrpg.plugin.ui.TestUI;
 import unhappy.legendzrpg.plugin.commands.Fly;
 import unhappy.legendzrpg.plugin.commands.GUI;
@@ -24,6 +25,7 @@ public class Main extends JavaPlugin implements Listener {
     @Getter
     public static Main instance;
     public DataManager data;
+    public Stat stat;
 
     private MongoClient mongoClient = MongoClients.create("mongodb+srv://Admin:Weakpass123@spigotcluster.skyow.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
     private MongoDatabase database = mongoClient.getDatabase("mongodb");
@@ -36,6 +38,7 @@ public class Main extends JavaPlugin implements Listener {
         connect();
         Bukkit.broadcastMessage("ay2");
         this.data = new DataManager(this);
+        this.stat = new Stat(this);
         //Commands
         new GUI(this);
         new Fly(this);
@@ -45,6 +48,7 @@ public class Main extends JavaPlugin implements Listener {
         new EntityDeathListener(this);
         new BlockBreakListener(this);
         new JoinListener(this);
+        new LeaveListener(this);
 
         TestUI.initialize();
 
