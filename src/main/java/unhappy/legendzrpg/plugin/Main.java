@@ -34,6 +34,7 @@ public class Main extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         instance = this;
+        //Connecting to MongoDB and cache database
         connect();
         this.data = new DataManager(this);
         this.stat = new Stat(this);
@@ -47,10 +48,8 @@ public class Main extends JavaPlugin implements Listener {
         new BlockBreakListener(this);
         new JoinListener(this);
         new LeaveListener(this);
-
         TestUI.initialize();
-
-        Bukkit.broadcastMessage(Utils.chat("&bSuccessfully Reloaded!"));
+        Bukkit.broadcastMessage(Utils.chat("&aSuccessfully Reloaded &bCore &alugin"));
     }
 
     @Override
