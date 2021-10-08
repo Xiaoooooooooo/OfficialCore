@@ -28,6 +28,11 @@ public class BlockBreakListener implements Listener {
         Player player = event.getPlayer();
         UUID uuid = player.getUniqueId();
         Main.getInstance().stat.changeAmount(uuid,1);
-        player.sendMessage(Utils.chat("&a+1"));
+        if (player.hasMetadata("Notify")) {
+            return;
+        }
+        else {
+            player.sendMessage(Utils.chat("&a+1"));
+        }
     }
 }

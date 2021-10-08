@@ -28,7 +28,7 @@ public class InventoryClickListener implements Listener {
                 return;
             }
             if (title.equals(TestUI.inventory_name)) {
-                TestUI.clicked((Player) e.getWhoClicked(), e.getSlot(), e.getCurrentItem(), e.getInventory());
+                TestUI.clicked((Player) e.getWhoClicked(), e.getSlot(), e.getCurrentItem(), e.getInventory(), e.isLeftClick());
             }
         }
     }

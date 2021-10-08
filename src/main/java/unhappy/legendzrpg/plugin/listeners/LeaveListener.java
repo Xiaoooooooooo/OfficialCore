@@ -1,6 +1,7 @@
 package unhappy.legendzrpg.plugin.listeners;
 
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,9 +20,8 @@ public class LeaveListener implements Listener {
     }
     @EventHandler
     public void onLeave(PlayerQuitEvent event) {
-        Player player = event.getPlayer();
+        OfflinePlayer player = event.getPlayer();
         UUID uuid = player.getUniqueId();
-        Main.getInstance().data.getConfig().set("players." + uuid + ".points", null);
         if (Main.getInstance().stat.getAmount(uuid) >= 1) {
             Main.getInstance().stat.savePoints(Main.getInstance().stat.getAmount(uuid),uuid, player);
         }

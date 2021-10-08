@@ -29,10 +29,10 @@ public class Utils {
         return item;
     }
 
-    public static ItemStack createItemByte(Inventory inv, String material, int amount, int invSlot, String displayName, String... loreString) {
+    public static ItemStack createItemByte(Inventory inv, String material, int byteID, int amount, int invSlot, String displayName, String... loreString) {
         ItemStack item;
         List<String> lore = new ArrayList();
-        item = new ItemStack(Material.matchMaterial(material), amount);
+        item = new ItemStack(Material.getMaterial(material), amount, (short) byteID);
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(Utils.chat(displayName));
         for (String s : loreString) {

@@ -2,6 +2,7 @@ package unhappy.legendzrpg.plugin.mongodb;
 
 import org.bson.Document;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import unhappy.legendzrpg.plugin.Main;
 
@@ -12,7 +13,7 @@ import static com.mongodb.client.model.Updates.*;
 
 public class Stat {
 
-    private Main plugin;
+    private final Main plugin;
 
     public Stat(Main plugin) {
         this.plugin = plugin;
@@ -36,22 +37,23 @@ public class Stat {
 
     public int loadPoints(UUID uuid) {
         Document document = plugin.getCollection().find(eq("uuid", uuid)).first();
-        int i = (int) document.get("points");
-        return i;
+        return (int) document.get("points");
     }
 
-    public void savePoints(int amount, UUID uuid, Player player) {
-        if (plugin.getCollection().find(eq("uuid", uuid)).first() == null) {
+    public void savePoints(int amount, UUID uuid, OfflinePlayer player) {
+        if (Main.getInstance().getCollection().find(eq("uuid", uuid)).first() == null) {
             Document document = new Document("uuid", uuid)
                     .append("name", player.getName().toLowerCase())
                     .append("realName", player.getName())
                     .append("points", amount);
-            plugin.getCollection().insertOne(document);
+            Main.getInstance().getCollection().insertOne(document);
+            Main.getInstance().data.getConfig().set("players." + uuid, null);
         }
         else {
-            plugin.getCollection().updateOne(
+            Main.getInstance().getCollection().updateOne(
                     eq("uuid", uuid),
                     combine(set("points", amount), currentDate("lastModified")));
+            Main.getInstance().data.getConfig().set("players." + uuid, null);
         }
     }
 }

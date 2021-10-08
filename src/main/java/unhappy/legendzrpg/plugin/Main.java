@@ -12,6 +12,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+import unhappy.legendzrpg.plugin.commands.Notify;
+import unhappy.legendzrpg.plugin.commands.admin.ChangePoints;
 import unhappy.legendzrpg.plugin.listeners.*;
 import unhappy.legendzrpg.plugin.mongodb.DataManager;
 import unhappy.legendzrpg.plugin.mongodb.Stat;
@@ -41,6 +43,7 @@ public class Main extends JavaPlugin implements Listener {
         //Commands
         new GUI(this);
         new Fly(this);
+        new Notify(this);
         //Listeners
         new PlayerDeathListener(this);
         new InventoryClickListener(this);
@@ -48,8 +51,9 @@ public class Main extends JavaPlugin implements Listener {
         new BlockBreakListener(this);
         new JoinListener(this);
         new LeaveListener(this);
+        new ChangePoints(this);
         TestUI.initialize();
-        Bukkit.broadcastMessage(Utils.chat("&aSuccessfully Reloaded &bCore &alugin"));
+        Bukkit.broadcastMessage(Utils.chat("&aSuccessfully Reloaded &bCore &aplugin"));
     }
 
     @Override

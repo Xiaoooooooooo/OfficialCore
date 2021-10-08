@@ -4,7 +4,11 @@ version: 0.0.1
 description: LegendzRPG Plugin
 
 commands:
-  test:
+  shop:
     description: Test GUI
   fly:
     description: Fly
+  notify:
+    description: Turns Notify on/off
+  givept:
+    description: Admin Command
